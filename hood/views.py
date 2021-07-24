@@ -4,6 +4,7 @@ from .forms import CreateUserForm  ,ProfileForm,UpdateProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 # Create your views here.
 
@@ -65,6 +66,23 @@ def profile(request):
     # "my_posts":my_posts
     
     return render(request,'profile.html',{"profile":profile,"current_user":current_user})
+
+
+@login_required(login_url='login')
+def edit_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST,request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+        return redirect('profile')
+
+    else:
+        form = UpdateProfileForm()
+        return render(request,'edit_profile.html',{"form":form})
+
 
 
 

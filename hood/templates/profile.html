@@ -2,32 +2,34 @@
 
 
 {% block content %}
-<div class="container">
-    <div class="row ">
-        <div class="col-sm-6 col-md-4">
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-6 col-md-4">
+                
+                <h5 class="user">{{profile.user.username}}</h5>
+                <img src="{{profile.image.url}}" class="img-thumbnail img-responsive img-fluid" alt="" 
+                style="border-radius: 50%; width:100px; height:100px; border-color: #373d20; border-width: 1.5px;">
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <hr>
+                <p>{{profile.email}}</p>
+                <p>{{profile.contact}}</p>
             
-            <h5 class="user">{{profile.user.username}}</h5>
-            <img src="{{profile.image.url}}" class="img-thumbnail img-responsive img-fluid" alt="" 
-             style="border-radius: 50%; width:100px; height:100px; border-color: #373d20; border-width: 1.5px;">
+            </div>
+            
+            <div class="col-sm-6 col-md-2" style="padding-top:20px;">
+                    <a href="{%url 'edit' %}" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
+            </div>
         </div>
-        <div class="col-sm-6 col-md-6">
-            <hr>
-            <p>{{profile.email}}</p>
-            <p>{{profile.contact}}</p>
-           
-        </div>
+        <!-- return here-->
         
-        <div class="col-sm-6 col-md-2" style="padding-top:20px;">
-                <a href="{%url 'edit' %}" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
-        </div>
     </div>
-    <!-- return here-->
-       
-</div>
-<footer  style="text-align: center;padding: 3px;background-color: #373d20;color: white;">
-    <p>Author: Gabriel Odhiambo<br>
-    <a href="mailto:gabyxbinnaeh4@gmail.com" style="color:white">gabyxbinnaeh4@gmail.com</a>
-    </p>
-</footer>
+
+    
+    <footer  style="text-align: center;padding: 3px;background-color: #373d20;color: white;">
+        <p>Author: Gabriel Odhiambo<br>
+        <a href="mailto:gabyxbinnaeh4@gmail.com" style="color:white">gabyxbinnaeh4@gmail.com</a>
+        </p>
+    </footer>
 
 {% endblock %}
