@@ -16,3 +16,13 @@ class Profile(models.Model):
     image=CloudinaryField('image',blank=True,null=True)
     bio=models.TextFields(max_length=100)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
+    email=models.EmailField(max_length=254, blank=True,null=True)
+    contact=models.TextField(max_length=40,null=True)
+
+    def __str__(self):
+        return self.bio
+
+    def save_profile(self):
+        self.save() 
+
+    
