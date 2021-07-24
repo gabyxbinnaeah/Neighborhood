@@ -52,7 +52,7 @@ class Profile(models.Model):
     hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     email=models.EmailField(max_length=254, blank=True,null=True)
-    contact=models.TextField(max_length=40,null=True)
+    contact=models.TextField(max_length=40,null=True) 
 
     def __str__(self):
         return self.bio
