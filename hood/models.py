@@ -131,9 +131,13 @@ class Business( models.Model ):
         businesses=cls.objects.filter( id=id ).update( id=id )
         return businesses 
 
-class user_hood( models.Model ):
-    user_id=models.OneToOneField(User,on_delete=models.CASCADE)
-    hood_id=models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
+class upcoming_events( models.Model ):
+    name = models.CharField( max_length=30, null=True)
+    description = models.TextField( max_length=200, null=True,blank=True)
+    hood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
+    date = models.DateField()
+    user=models.ForeignKey( User, on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.user_id
