@@ -86,6 +86,7 @@ class Profile(models.Model):
 
 class Business( models.Model ):
     name=models.CharField( max_length=40 , null=True )
+    description=models.TextField( max_length=200, null=True,blank=True)
     image=CloudinaryField('image',blank=True,null=True)
     user=models.ForeignKey( User , on_delete=models.CASCADE , null=True , related_name="business" )
     hood=models.ForeignKey( Neighborhood, on_delete=models.CASCADE)

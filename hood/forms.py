@@ -12,9 +12,10 @@ class CreateUserForm(UserCreationForm):
 
 
 class BusinessForm(forms.ModelForm):
+	
 	class Meta:
 		model=Business
-		fields=['name']
+		fields=['name', 'description','image','business_email']
 
 
 class UpdateProfileForm(forms.ModelForm):
@@ -24,6 +25,15 @@ class UpdateProfileForm(forms.ModelForm):
         exclude = ['user','bio','hoods'] 
 
 class ProfileForm(forms.ModelForm):
+
     class Meta:
         model = Profile
         fields=['image', 'bio','email','contact'] 
+
+class NeighborhoodForm(forms.ModelForm):
+
+	class Meta:
+
+		model=Neighborhood
+		fields=['name' , 'description' , 'location' , 'population','hood','health_contact','police_contact'] 
+
