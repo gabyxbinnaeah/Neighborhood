@@ -9,50 +9,16 @@ from django.dispatch import receiver
 
 
 # Create your models here.
-class Profile(models.Model):
-    '''
-    model that defines user profile.
-    '''
-    image=CloudinaryField('image',blank=True,null=True)
-    hoods=models.TextFields(max_length=100)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    email=models.EmailField(max_length=254, blank=True,null=True)
-    contact=models.TextField(max_length=40,null=True)
-
-    def __str__(self):
-        return self.bio
-
-    def save_profile(self):
-        self.save() 
-
-    def delete_profile(self):
-        self.delete() 
-    @classmethod 
-    def get_profile(cls):
-       profile=Profile.objects.all()
-       return profile 
-
-    @classmethod
-    def search_profile(cls):
-        found_profile=cls.objects.filter(user__username__icontains=search_term)
-        return found_profile 
 
 
 class Neighborhood( models.Model ):
     name=models.CharField( max_length=300 , null=True )
     description=models.CharField(max_length=500 , null=True)
-    location=models.CharField( max_length=100 , choices=CITY_CHOICES )
+    location=models.CharField( max_length=100 , null=True)
     population=models.IntegerField(default=0)
     health_contact=models.IntegerField(max_length=20,blank=True,null=True)
     police_contact=models.IntegerField(max_length=20,blank=True,null=True)
     user=models.ForeignKey( User, on_delete=models.CASCADE )
-    hoods=(
-        ('Nairobi' , 'Nairobi'),
-        ('Kisumu' , 'Kisumu'),
-        ('Mombasa' , 'Mombasa'),
-        ('Malindi' , 'Malindi'),
-        ('Nakuru','Nakuru'),
-    )
 
     def get_absolute_url(self):
         return reverse( 'detail' , kwargs={'pk': self.pk} )
@@ -76,7 +42,36 @@ class Neighborhood( models.Model ):
         return hoods
 
     def __str__(self):
-        return self.name    
+        return self.name  
+
+class Profile(models.Model):
+    '''
+    model that defines user profile.
+    '''
+    image=CloudinaryField('image',blank=True,null=True)
+    hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,related_name='location')
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    email=models.EmailField(max_length=254, blank=True,null=True)
+    contact=models.TextField(max_length=40,null=True)
+
+    def __str__(self):
+        return self.bio
+
+    def save_profile(self):
+        self.save() 
+
+    def delete_profile(self):
+        self.delete() 
+    @classmethod 
+    def get_profile(cls):
+       profile=Profile.objects.all()
+       return profile 
+
+    @classmethod
+    def search_profile(cls):
+        found_profile=cls.objects.filter(user__username__icontains=search_term)
+        return found_profile 
+  
 
 
 class Business( models.Model ):
