@@ -81,6 +81,7 @@ class Neighborhood( models.Model ):
 
 class Business( models.Model ):
     name=models.CharField( max_length=40 , null=True )
+    image=CloudinaryField('image',blank=True,null=True)
     user=models.ForeignKey( User , on_delete=models.CASCADE , null=True , related_name="business" )
     hood=models.ForeignKey( Neighborhood, on_delete=models.CASCADE)
     business_email=models.EmailField(max_length=254, blank=True,null=True)
@@ -124,3 +125,11 @@ class Business( models.Model ):
     def update_business(cls , id):
         businesses=cls.objects.filter( id=id ).update( id=id )
         return businesses 
+
+class user_hood( models.Model ):
+    user_id=models.OneToOneField(User)
+    hood_id=models.ForeignKey(Neighborhood)
+
+    def __str__(self):
+        return self.user_id
+
