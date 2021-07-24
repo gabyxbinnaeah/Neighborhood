@@ -175,14 +175,14 @@
 					<a href="#" class="social"><i class="fab fa fa-twitter fa-2x"></i></a>
 				</div>
 				<span>or use your account</span>
-				<input type="username" placeholder="enter username" />
-				<input type="password" placeholder="Password" />
+				<input type="text" name="username" placeholder="Username..." class="form-control">
+				<input type="password" name="password" placeholder="Password..." class="form-control">
 				<a href="#">Forgot your password?</a>
 				<button>Log In</button>
 			</form>
 		</div>
         {% for message in messages %}
-		 <p id="messages">{{message}}</p>
+		 <p id="messages" style="color:black;">{{message}}</p>
 		{% endfor %}
 		<div class="overlay-container">
 			<div class="overlay">

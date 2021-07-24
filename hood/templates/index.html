@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+{%load bootstrap4 %}
+{%load static%}
+{%block content%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +11,13 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <p>Lorem ipsum dolor sit amet.</p>
-    <p>Lorem ipsum dolor sit amet.</p>
+    <div class="" style="padding:55px;color:black;background-color:blue;">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    
 </body>
 </html>
+{% endblock %}
