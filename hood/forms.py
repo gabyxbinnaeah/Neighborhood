@@ -21,9 +21,9 @@ class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        exclude = ['user','hoods'] 
+        exclude = ['user','bio','hoods'] 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields=['image','email','contact'] 
+        fields=['image', 'bio','email','contact'] 

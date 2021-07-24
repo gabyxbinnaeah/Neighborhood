@@ -49,6 +49,7 @@ class Profile(models.Model):
     model that defines user profile.
     '''
     image=CloudinaryField('image',blank=True,null=True)
+    bio=models.CharField(max_length=20, null=True,blank=True)
     hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     email=models.EmailField(max_length=254, blank=True,null=True)
