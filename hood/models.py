@@ -38,7 +38,7 @@ class Profile(models.Model):
         return found_profile 
 
 
-class Neighbourhood( models.Model ):
+class Neighborhood( models.Model ):
     name=models.CharField( max_length=300 , null=True )
     description=models.CharField(max_length=500 , null=True)
     location=models.CharField( max_length=100 , choices=CITY_CHOICES )
@@ -75,3 +75,50 @@ class Neighbourhood( models.Model ):
 
     def __str__(self):
         return self.name    
+
+
+class Business( models.Model ):
+    name=models.CharField( max_length=40 , null=True )
+    user=models.ForeignKey( User , on_delete=models.CASCADE , null=True , related_name="business" )
+    hood=models.ForeignKey( Neighborhood, on_delete=models.CASCADE)
+    business_email=models.EmailField(max_length=254, blank=True,null=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse( 'detail' , kwargs={'pk': self.pk} )
+
+
+    def save_business(self):
+        self.save( )
+
+    @classmethod
+    def delete_business_by_id(cls , id):
+        businesses=cls.objects.filter( pk=id )
+        businesses.delete()
+
+    @classmethod
+    def get_businesses_by_id(cls , id):
+        searched_business=cls.objects.get( pk=id )
+        return searched_business
+
+    @classmethod
+    def filter_business_by_location(cls , location):
+        business_in_neighborhood=cls.objects.filter( location=location )
+        return business_in_neighborhood
+
+    @classmethod
+    def search_businesses(cls , search_term):
+        found_business=cls.objects.filter( business_name__icontains=search_term )
+        return found_business
+
+    @classmethod
+    def update_business(cls , id):
+        businesses=cls.objects.filter( id=id ).update( id=id )
+        return businesses
+
+    @classmethod
+    def update_business(cls , id):
+        businesses=cls.objects.filter( id=id ).update( id=id )
+        return businesses 
