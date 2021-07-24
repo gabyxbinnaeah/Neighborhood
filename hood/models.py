@@ -25,4 +25,15 @@ class Profile(models.Model):
     def save_profile(self):
         self.save() 
 
-    
+    def delete_profile(self):
+        self.delete() 
+    @classmethod 
+    def get_profile(cls):
+       profile=Profile.objects.all()
+       return profile 
+
+    @classmethod
+    def search_profile(cls):
+        found_profile=cls.objects.filter(user__username__icontains=search_term)
+        return found_profile 
+        
