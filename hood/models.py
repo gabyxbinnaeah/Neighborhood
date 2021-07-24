@@ -12,9 +12,18 @@ from django.dispatch import receiver
 
 
 class Neighborhood( models.Model ):
+
+    ZONES_CHOICES=(
+        ("Kisumu", "Kisumu"),
+        ("Mombasa", "Mombasa"),
+        ("Nairobi", "Nairobi"),
+        ("Nakuru", "Nakuru"),
+        ("Kilifi", "Kilifi"),
+    )
     name=models.CharField( max_length=300 , null=True )
-    description=models.CharField(max_length=500 , null=True)
-    location=models.CharField( max_length=100 , null=True)
+    hood=models.CharField( max_length=30, null=True,blank=True)
+    description=models.CharField(max_length=200, null=True)
+    location=models.CharField( max_length=100 , choices=ZONES_CHOICES,default="Kisumu")
     population=models.IntegerField(default=0)
     health_contact=models.IntegerField(blank=True,null=True)
     police_contact=models.IntegerField(blank=True,null=True)
