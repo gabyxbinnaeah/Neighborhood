@@ -16,8 +16,8 @@ class Neighborhood( models.Model ):
     description=models.CharField(max_length=500 , null=True)
     location=models.CharField( max_length=100 , null=True)
     population=models.IntegerField(default=0)
-    health_contact=models.IntegerField(max_length=20,blank=True,null=True)
-    police_contact=models.IntegerField(max_length=20,blank=True,null=True)
+    health_contact=models.IntegerField(blank=True,null=True)
+    police_contact=models.IntegerField(blank=True,null=True)
     user=models.ForeignKey( User, on_delete=models.CASCADE )
 
     def get_absolute_url(self):
@@ -49,7 +49,7 @@ class Profile(models.Model):
     model that defines user profile.
     '''
     image=CloudinaryField('image',blank=True,null=True)
-    hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE,related_name='location')
+    hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     email=models.EmailField(max_length=254, blank=True,null=True)
     contact=models.TextField(max_length=40,null=True)
@@ -122,8 +122,8 @@ class Business( models.Model ):
         return businesses 
 
 class user_hood( models.Model ):
-    user_id=models.OneToOneField(User)
-    hood_id=models.ForeignKey(Neighborhood)
+    user_id=models.OneToOneField(User,on_delete=models.CASCADE)
+    hood_id=models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_id
