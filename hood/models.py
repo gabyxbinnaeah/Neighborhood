@@ -43,6 +43,8 @@ class Neighborhood( models.Model ):
     description=models.CharField(max_length=500 , null=True)
     location=models.CharField( max_length=100 , choices=CITY_CHOICES )
     population=models.IntegerField(default=0)
+    health_contact=models.IntegerField(max_length=20,blank=True,null=True)
+    police_contact=models.IntegerField(max_length=20,blank=True,null=True)
     user=models.ForeignKey( User, on_delete=models.CASCADE )
     hoods=(
         ('Nairobi' , 'Nairobi'),
@@ -56,10 +58,10 @@ class Neighborhood( models.Model ):
         return reverse( 'detail' , kwargs={'pk': self.pk} )
 
     def save_hood(self):
-        self.save( )
+        self.save()
 
     def delete_hood(self):
-        self.delete( )
+        self.delete()
 
     @classmethod
     def update_neighborhood(cls,id,hoods):
