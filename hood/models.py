@@ -141,5 +141,16 @@ class upcoming_events( models.Model ):
     
 
     def __str__(self):
-        return self.user_id
+        return self.name
+
+    def save_events(self):
+        self.save()
+
+    def delete_events(self):
+        self.delete()
+    
+    @classmethod
+    def update_event(cls , id,name):
+        updated_event=cls.objects.filter(id=id).update(name=name)
+        return updated_event
 

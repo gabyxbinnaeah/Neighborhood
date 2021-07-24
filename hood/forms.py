@@ -12,7 +12,7 @@ class CreateUserForm(UserCreationForm):
 
 
 class BusinessForm(forms.ModelForm):
-	
+
 	class Meta:
 		model=Business
 		fields=['name', 'description','image','business_email']
@@ -36,4 +36,12 @@ class NeighborhoodForm(forms.ModelForm):
 
 		model=Neighborhood
 		fields=['name' , 'description' , 'location' , 'population','hood','health_contact','police_contact'] 
+
+
+class EventsForm(forms.ModelForm):
+
+	class Meta:
+
+		model=Events
+		fields=['name','description','date']
 
