@@ -121,7 +121,7 @@ def single_neighborhood(request, hood_id):
         'form': form,
         'posts': posts
     }
-    return render(request, 'single_hood.html', params) 
+    return render(request, 'singlehood.html.html', params) 
 
 
 
