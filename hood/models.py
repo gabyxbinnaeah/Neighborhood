@@ -24,9 +24,10 @@ class Neighborhood( models.Model ):
     description=models.TextField(max_length=200, null=True)
     location=models.CharField( max_length=100 , choices=ZONES_CHOICES,default="Kisumu")
     population=models.IntegerField(default=0)
+    admin=models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     health_contact=models.IntegerField(blank=True,null=True)
     police_contact=models.IntegerField(blank=True,null=True)
-    user=models.ForeignKey( User, on_delete=models.CASCADE )
+    user=models.ForeignKey( User, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse( 'detail' , kwargs={'pk': self.pk} )
@@ -89,8 +90,8 @@ class Profile(models.Model):
 
 
 class Business( models.Model ):
-    name=models.CharField( max_length=40 , null=True )
-    description=models.TextField( max_length=200, null=True,blank=True)
+    name=models.CharField(max_length=40 , null=True)
+    description=models.TextField(max_length=200, null=True,blank=True)
     image=CloudinaryField('image',blank=True,null=True)
     user=models.ForeignKey( User , on_delete=models.CASCADE , null=True , related_name="business" )
     hood=models.ForeignKey( Neighborhood, on_delete=models.CASCADE)
@@ -158,3 +159,20 @@ class UpcomingEvents( models.Model ):
         updated_event=cls.objects.filter(id=id).update(name=name)
         return updated_event
 
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=100, null=True)
+    post = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
+    hood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='hood_post')
+
+    def __str__(self):
+        return f'{self.title} Post'
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()

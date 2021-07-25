@@ -9,27 +9,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .vl {
+            border-left: 6px solid #540b0e;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            margin-left: -3px;
+            top: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="row d-flex justify-content-center">
         {% for neighbors in found_neighborhood %}
-        <div class="col-md-4">
+        <div class="col-md-4" style="padding:20px">
+            <div class="vl"></div>
             <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="card-header">
-                  {{neighbors.name}}
+                  <h2>Mtaa: {{neighbors.name}}</h2>  
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Population Density: {{neighbors.population}}</h5>
                   <p class="card-text">{{neighbors.description}}</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <a href="#" class="btn btn-outline-info">Businesses</a>
                   
                 </div>
                 <div class="card-footer text-muted">
-                    <p class="card-text">Health Contact: {{neighbors.health_contact}}</p>
+
+                    <table class="shadow-md table table-light table-striped" style="">
+                        <thead>
+                          <tr>
+                            <th>Health Contact</th>
+                            <th>Police Contact</th>
+                            <th>Location </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{{neighbors.health_contact}}</td>
+                            <td>{{neighbors.police_contact}}</td>
+                            <td>{{neighbors.location}}</td>
+                            
+                          </tr>
+                        </tbody>
+                      </table>
+                    <!-- <p class="card-text">Health Contact: {{neighbors.health_contact}}</p>
                     <p class="card-text">Police Contact: {{neighbors.police_contact}}</p>
+                    <p class="card-text">Location : {{neighbors.location}}</p> -->
+
                 </div>
             </div>
+            
         </div>
+       
         {% endfor %}
     </div>
     

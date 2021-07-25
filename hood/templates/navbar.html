@@ -6,10 +6,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<div class="navbar car" style="background-color:  red;"> 
+<div class="navbar car" style="background-color:  #540b0e;"> 
     <nav class="container-fluid" style="padding-bottom: 0px; padding-left: 150px;">
         <span class="navbar-brand mb-0 h1">
-            <div class="no-underline" href="{% url 'index' %}" style="color:white;text-decoration:none;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiCHmlxf-dz7YBlqp8QK7zkpaVbdFm3hAJCw&usqp=CAU');border-radius: 50%; height:80px;width:100px;background-size: cover;background-repeat: no-repeat;background-position:center center;">
+            <div class="no-underline" href="{% url 'index' %}" style="color:white;text-decoration:none;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNRDP1RCPuXQ6Zyqxt4GV5MyOQDEWuSV3kfw&usqp=CAU');border-radius: 50%; height:80px;width:100px;background-size: cover;background-repeat: no-repeat;background-position:center center;">
                 
             </div> 
         </span>
@@ -34,7 +34,7 @@
         {% if user.is_authenticated %}
                 <div class="instaicon like" style="display: inline; color:white;" class="dropdown">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModalCenter">
                         <span id="hello" style="color:white">Hi, {{request.user}}</span>
                     </button>
                     

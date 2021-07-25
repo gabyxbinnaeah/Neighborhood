@@ -35,7 +35,7 @@ class NeighborhoodForm(forms.ModelForm):
 	class Meta:
 
 		model=Neighborhood
-		fields=['name' , 'description' , 'location' , 'population','health_contact','police_contact'] 
+		fields=['name' , 'description' , 'location' ,'admin', 'population','health_contact','police_contact'] 
 
 
 class EventsForm(forms.ModelForm):
