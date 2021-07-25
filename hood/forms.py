@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Business,Neighborhood,Profile
+from .models import Business,Neighborhood,Profile,UpcomingEvents
 
 
 
@@ -35,13 +35,13 @@ class NeighborhoodForm(forms.ModelForm):
 	class Meta:
 
 		model=Neighborhood
-		fields=['name' , 'description' , 'location' , 'population','hood','health_contact','police_contact'] 
+		fields=['name' , 'description' , 'location' , 'population','health_contact','police_contact'] 
 
 
 class EventsForm(forms.ModelForm):
 
 	class Meta:
 
-		model=Events
+		model=UpcomingEvents
 		fields=['name','description','date']
 

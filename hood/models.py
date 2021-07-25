@@ -21,8 +21,7 @@ class Neighborhood( models.Model ):
         ("Kilifi", "Kilifi"),
     )
     name=models.CharField( max_length=300 , null=True )
-    hood=models.CharField( max_length=30, null=True,blank=True)
-    description=models.CharField(max_length=200, null=True)
+    description=models.TextField(max_length=200, null=True)
     location=models.CharField( max_length=100 , choices=ZONES_CHOICES,default="Kisumu")
     population=models.IntegerField(default=0)
     health_contact=models.IntegerField(blank=True,null=True)
@@ -39,11 +38,16 @@ class Neighborhood( models.Model ):
         self.delete()
 
     @classmethod
-    def update_neighborhood(cls,id,hoods):
+    def neighborhood_list(cls):
+        list_of_neighborhood=cls.objects.all()
+        return list_of_neighborhood
+
+    @classmethod
+    def update_neighborhood(cls,id,name):
         '''
          Method that updates user profile hoods
         '''
-        return cls.objects.filter(id=id).update(hoods=hoods) 
+        return cls.objects.filter(id=id).update(hoods=name) 
 
     @classmethod
     def search_hood(cls , search_term):
@@ -62,7 +66,7 @@ class Profile(models.Model):
     hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     email=models.EmailField(max_length=254, blank=True,null=True)
-    contact=models.TextField(max_length=40,null=True) 
+    contact=models.IntegerField(null=True, blank=True) 
 
     def __str__(self):
         return self.bio
@@ -132,7 +136,7 @@ class Business( models.Model ):
         businesses=cls.objects.filter( id=id ).update( id=id )
         return businesses 
 
-class upcoming_events( models.Model ):
+class UpcomingEvents( models.Model ):
     name = models.CharField( max_length=30, null=True)
     description = models.TextField( max_length=200, null=True,blank=True)
     hood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)

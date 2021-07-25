@@ -11,11 +11,26 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="" style="padding:55px;color:black;background-color:blue;">
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p>Lorem ipsum dolor sit amet.</p>
-        <p>Lorem ipsum dolor sit amet.</p>
+    <div class="row d-flex justify-content-center">
+        {% for neighbors in found_neighborhood %}
+        <div class="col-md-4">
+            <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="card-header">
+                  {{neighbors.name}}
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Population Density: {{neighbors.population}}</h5>
+                  <p class="card-text">{{neighbors.description}}</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  
+                </div>
+                <div class="card-footer text-muted">
+                    <p class="card-text">Health Contact: {{neighbors.health_contact}}</p>
+                    <p class="card-text">Police Contact: {{neighbors.police_contact}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
     
 </body>

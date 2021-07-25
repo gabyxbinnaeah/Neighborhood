@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm  ,ProfileForm,UpdateProfileForm
+from .forms import CreateUserForm ,ProfileForm,UpdateProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile,Neighborhood,UpcomingEvents,Business
 
 # Create your views here.
 
@@ -53,7 +53,8 @@ def logoutUser(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+	found_neighborhood=Neighborhood.neighborhood_list()
+	return render(request, 'index.html',{"found_neighborhood":found_neighborhood})
 
 @login_required(login_url='login') 
 def profile(request):
