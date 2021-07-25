@@ -8,6 +8,7 @@ from django.dispatch import receiver
 
 
 
+
 # Create your models here.
 
 
@@ -24,7 +25,7 @@ class Neighborhood( models.Model ):
     description=models.TextField(max_length=200, null=True)
     location=models.CharField( max_length=100 , choices=ZONES_CHOICES,default="Kisumu")
     population=models.IntegerField(default=0)
-    admin=models.CharField(max_length=20, blank=True,null=True)
+    admin=models.CharField(max_length=20, blank=True,  null=True)
     health_contact=models.IntegerField(blank=True,null=True)
     police_contact=models.IntegerField(blank=True,null=True)
     user=models.ForeignKey( User, on_delete=models.CASCADE)
@@ -42,6 +43,8 @@ class Neighborhood( models.Model ):
     def neighborhood_list(cls):
         list_of_neighborhood=cls.objects.all()
         return list_of_neighborhood
+
+    
 
     @classmethod
     def update_neighborhood(cls,id,name):
@@ -141,7 +144,7 @@ class UpcomingEvents( models.Model ):
     name = models.CharField( max_length=30, null=True)
     description = models.TextField( max_length=200, null=True,blank=True)
     hood=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateField()
     user=models.ForeignKey( User, on_delete=models.CASCADE)
     
 
@@ -164,7 +167,7 @@ class UpcomingEvents( models.Model ):
 class Post(models.Model):
     title = models.CharField(max_length=100, null=True)
     post = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_owner')
     hood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='hood_post')
 

@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CreateUserForm ,ProfileForm,UpdateProfileForm
+from .forms import CreateUserForm ,ProfileForm,UpdateProfileForm ,BusinessForm,EventsForm,PostForm,NeighborhoodForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Profile,Neighborhood,UpcomingEvents,Business
+
 
 # Create your views here.
 
@@ -55,6 +56,18 @@ def logoutUser(request):
 def index(request):
 	found_neighborhood=Neighborhood.neighborhood_list()
 	return render(request, 'index.html',{"found_neighborhood":found_neighborhood})
+
+def create_neighborhood(request):
+    if request.method == 'POST':
+        form =  NeighborhoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.admin = request.user.profile
+            hood.save()
+            return redirect('hood')
+    else:
+        form =  NeighborhoodForm()
+    return render(request, 'newhood.html', {'form': form}) 
 
 @login_required(login_url='login') 
 def profile(request):

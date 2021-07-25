@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Business,Neighborhood,Profile,UpcomingEvents
+from .models import Business,Neighborhood,Profile,UpcomingEvents,Post
 
 
 
@@ -51,5 +51,5 @@ class PostForm(forms.ModelForm):
 	class Meta:
 
 		model=Post
-		fields=['title','post','date']
+		fields=['title','post','date'] 
 
