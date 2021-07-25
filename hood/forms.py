@@ -45,3 +45,11 @@ class EventsForm(forms.ModelForm):
 		model=UpcomingEvents
 		fields=['name','description','date']
 
+
+class PostForm(forms.ModelForm):
+
+	class Meta:
+
+		model=Post
+		fields=['title','post','date']
+
