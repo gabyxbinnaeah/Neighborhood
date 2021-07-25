@@ -22,13 +22,14 @@ class Neighborhood( models.Model ):
         ("Kilifi", "Kilifi"),
     )
     name=models.CharField( max_length=300 , null=True )
+    image=CloudinaryField('image', blank=True,null=True)
     description=models.TextField(max_length=200, null=True)
     location=models.CharField( max_length=100 , choices=ZONES_CHOICES,default="Kisumu")
     population=models.IntegerField(default=0)
     admin=models.CharField(max_length=20, blank=True,  null=True)
-    health_contact=models.IntegerField(blank=True,null=True)
-    police_contact=models.IntegerField(blank=True,null=True)
-    user=models.ForeignKey( User, on_delete=models.CASCADE)
+    health_contact=models.CharField(max_length=20,  null=True, blank=True)
+    police_contact=models.CharField(max_length=20,  null=True, blank=True)
+    
 
     def get_absolute_url(self):
         return reverse( 'detail' , kwargs={'pk': self.pk} )
@@ -70,7 +71,7 @@ class Profile(models.Model):
     hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     email=models.EmailField(max_length=254, blank=True,null=True)
-    contact=models.IntegerField(null=True, blank=True) 
+    contact=models.CharField(max_length=20,  null=True, blank=True) 
 
     def __str__(self):
         return self.bio

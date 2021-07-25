@@ -62,11 +62,11 @@ def create_neighborhood(request):
         form =  NeighborhoodForm(request.POST, request.FILES)
         if form.is_valid():
             hood = form.save(commit=False)
-            hood.admin = request.user.profile
+            # hood.admin = request.user.profile
             hood.save()
-            return redirect('hood')
+            return redirect('index')
     else:
-        form =  NeighborhoodForm()
+        form = NeighborhoodForm() 
     return render(request, 'newhood.html', {'form': form}) 
 
 @login_required(login_url='login') 
@@ -99,4 +99,44 @@ def edit_profile(request):
 
 
 
+
+def single_neighbourhood(request, hood_id):
+    singlehood= Neighborhood.objects.get(id=hood_id)
+    business = Business.objects.filter(neighbourhood=hood)
+    # posts = Post.objects.filter(hood=hood)
+    # posts = posts[::-1]
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            formdata = form.save(commit=False)
+            formdata.neighbourhood = singlehood 
+            formdata.user = request.user 
+            formdata.save()
+            return redirect('single-hood', singlehood.id)
+    else:
+        form = BusinessForm() 
+    params = {
+        'singlehood': singlehood,
+        'business': business,
+        'form': form,
+        # 'posts': posts
+    }
+    return render(request, 'neighbourhood/single_hood.html', params) 
+
+
+
+def create_post(request, hood_id):
+    singlehood = Neighbourhood.objects.get(id=hood_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.singlehood = singlehood
+            post.user = request.user.profile
+            post.save()
+            return redirect('single-hood', singlehood.id)
+
+    else:
+        form = PostForm()
+    return render(request, 'neighbourhood/post.html', {'form': form})
 
