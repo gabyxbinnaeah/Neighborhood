@@ -100,11 +100,11 @@ def edit_profile(request):
 
 
 
-def single_neighbourhood(request, hood_id):
+def single_neighborhood(request, hood_id):
     singlehood= Neighborhood.objects.get(id=hood_id)
     business = Business.objects.filter(neighbourhood=hood)
-    # posts = Post.objects.filter(hood=hood)
-    # posts = posts[::-1]
+    posts = Post.objects.filter(hood=hood)
+    posts = posts[::-1]
     if request.method == 'POST':
         form = BusinessForm(request.POST)
         if form.is_valid():
@@ -119,9 +119,9 @@ def single_neighbourhood(request, hood_id):
         'singlehood': singlehood,
         'business': business,
         'form': form,
-        # 'posts': posts
+        'posts': posts
     }
-    return render(request, 'neighbourhood/single_hood.html', params) 
+    return render(request, 'single_hood.html', params) 
 
 
 
@@ -138,5 +138,19 @@ def create_post(request, hood_id):
 
     else:
         form = PostForm()
-    return render(request, 'neighbourhood/post.html', {'form': form})
+    return render(request, 'post.html', {'form': form})
 
+
+def join_neighbourhood(request, id):
+    neighbourhood = get_object_or_404(Neighbourhood, id=id)
+    request.user.neighbourhood = neighbourhood
+	# request.user.profile.neighbourhood = neighbourhood
+    request.user.save()
+    return redirect('index')
+
+
+def leave_neighbourhood(request, id):
+    hood = get_object_or_404(Neighbourhood, id=id)
+    request.user.neighbourhood = None
+    request.user.save()
+    return redirect('index')
