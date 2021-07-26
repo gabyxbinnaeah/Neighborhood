@@ -78,10 +78,40 @@ class ProfileTestClass(TestCase):
         profile_list=Profile.objects.all()
         self.assertTrue(len(profile_list)==1)
         new_bio=Profile.objects.all().first()
-        self.assertTrue(new_bio.bio=='Humble motivated coder')
+        self.assertTrue(new_bio.bio=='Humble motivated coder') 
 
 
+class BusinessTestClass(TestCase):
+    def setUp(self):
+        '''
+        Method that creates instance of business class
+        '''
+        self.gas= Business(image="start.pgn",name="gas", business_email="gas@gmail.com", description="0791563569") 
+        self.gas.save_business() 
 
+    # def test_instance(self):
+    #     '''
+    #     method that checks if business  is instance
+    #     '''
+    #     self.assertTrue(isinstance(self.gas,Business))
+
+
+    # def test_save_business(self):
+    #     '''
+    #     Method that test if business  is being saved
+    #     '''
+    #     self.gas.save_business()
+    #     saved_bs=Business.objects.all()
+    #     self.assertTrue(len(saved_bs)>0) 
+
+    # def test_delete_business(self):
+    #     '''
+    #     method that checks if business  is deleted
+    #     '''
+    #     self.gas.save_business()
+    #     self.gas.delete_business()
+    #     left_bs=Business.objects.all()
+    #     self.assertTrue(len(left_bs)==0) 
 
 
 

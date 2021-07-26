@@ -136,10 +136,7 @@ class Business( models.Model ):
         businesses=cls.objects.filter( id=id ).update( id=id )
         return businesses
 
-    @classmethod
-    def update_business(cls , id):
-        businesses=cls.objects.filter( id=id ).update( id=id )
-        return businesses 
+  
 
 class UpcomingEvents( models.Model ):
     name = models.CharField( max_length=30, null=True)
