@@ -89,11 +89,11 @@ class BusinessTestClass(TestCase):
         self.gas= Business(image="start.pgn",name="gas", business_email="gas@gmail.com", description="0791563569") 
         self.gas.save_business() 
 
-    # def test_instance(self):
-    #     '''
-    #     method that checks if business  is instance
-    #     '''
-    #     self.assertTrue(isinstance(self.gas,Business))
+    def test_instance(self):
+        '''
+        method that checks if business  is instance
+        '''
+        self.assertTrue(isinstance(self.gas,Business))
 
 
     # def test_save_business(self):
