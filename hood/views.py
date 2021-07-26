@@ -53,7 +53,7 @@ def logoutUser(request):
 	logout(request)
 	return redirect('login')
 
-
+@login_required(login_url='login')
 def index(request):
 	found_neighborhood=Neighborhood.neighborhood_list()
 	return render(request, 'index.html',{"found_neighborhood":found_neighborhood})
@@ -69,6 +69,21 @@ def create_neighborhood(request):
     else:
         form = NeighborhoodForm() 
     return render(request, 'newhood.html', {'form': form}) 
+
+
+def join_neighbourhood(request, id):
+    hoods = get_object_or_404(Neighborhood, id=id)
+    request.user.hoods = hoods
+	# request.user.profile.neighbourhood = neighbourhood
+    request.user.save()
+    return redirect('index')
+
+
+def leave_neighbourhood(request, id):
+    hood = get_object_or_404(Neighborhood, id=id)
+    request.user.hoods = None
+    request.user.save()
+    return redirect('index') 
 
 @login_required(login_url='login') 
 def profile(request):
@@ -142,16 +157,3 @@ def create_post(request, hood_id):
     return render(request, 'post.html', {'form': form})
 
 
-def join_neighbourhood(request, id):
-    neighbourhood = get_object_or_404(Neighborhood, id=id)
-    request.user.neighbourhood = neighbourhood
-	# request.user.profile.neighbourhood = neighbourhood
-    request.user.save()
-    return redirect('index')
-
-
-def leave_neighbourhood(request, id):
-    hood = get_object_or_404(Neighborhood, id=id)
-    request.user.neighbourhood = None
-    request.user.save()
-    return redirect('index')

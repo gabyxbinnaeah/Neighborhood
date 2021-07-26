@@ -16,7 +16,7 @@
         }
 
         body {
-        background: #f3e0e2;
+        background: rgba(128, 128, 128, 0.377);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -52,8 +52,8 @@
 
         button {
         border-radius: 20px;
-        border: 1px solid #FF4B2B;
-        background-color: #FF4B2B;
+        border: 1px solid #540b0e;
+        background-color: #540b0e;
         color: #FFFFFF;
         font-size: 12px;
         font-weight: bold;
@@ -116,9 +116,9 @@
 
 
         .overlay {
-        background: #FF416C;
-        background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-        background: linear-gradient(to right, #FF4B2B, #FF416C);
+        background: #540b0e;
+        background: -webkit-linear-gradient(to right, #540b0e, #540b0e);
+        background: linear-gradient(to right, #540b0e, #540b0e);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0 0;
@@ -174,7 +174,7 @@
 					<a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
 					<a href="#" class="social"><i class="fab fa fa-twitter fa-2x"></i></a>
 				</div>
-				<span>or use your account</span>
+				
 				<input type="text" name="username" placeholder="Username..." class="form-control">
 				<input type="password" name="password" placeholder="Password..." class="form-control">
 				<a href="#">Forgot your password?</a>
@@ -191,11 +191,13 @@
 					
                     <div class="mt-4">
                         <div class="d-flex justify-content-center links">
-                            Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+                            Don't have an account? <a href="{% url 'register' %}" class="ml-2" style="color: blue;">Sign Up</a>
                         </div>
                 
                     </div>
+                   
 				</div>
+                
 			</div>
 		</div>
 	</div>

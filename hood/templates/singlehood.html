@@ -69,12 +69,11 @@
                 {% for busines in business %}
                 <div class="col-md-4">
                     <div class="card mb-4">
-                      <div class="card-body">
-                        <h6 class="card-title">{{busines.name}}:<span>{{busines.business_email}}</span>
-                        </h6>
-                        <p class="card-text">{{busines.description}}</p>
-                        <p class="card-text">Owner: <small class="text-info">
-                            {{ busines.user.user.username|title }}</small></p>
+                      <div class="card-body shadow-lg">
+                        <h6 class="card-title">Bs name:{{busines.name}}</h6>
+                        <h6>Bs email:{{busines.business_email}}</h6>
+                        <p class="card-text">Bs description:{{busines.description}}</p>
+                        <p class="card-text">Owner: <small class="text-info">{{ busines.user.username|title }}</small></p>
                       </div>
                     </div>
                   </div>
@@ -94,7 +93,7 @@
                       <p class="card-text">" {{post.post}} "
                       </p>
                       <p class="card-text">By: <small class="text-info">
-                          {{ post.user.user.username|title }}</small> <small style="float:right">{{post.date|date}}</small>
+                          {{ post.user.username|title }}</small> <small style="float:right">{{post.date|date}}</small>
                       </p>
                     </div>
                   </div>

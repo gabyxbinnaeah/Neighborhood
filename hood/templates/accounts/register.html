@@ -13,13 +13,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #373d20 !important;
+			background: rgba(128, 128, 128, 0.377) !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #d9d9d9;
+			background: #540b0e;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -28,7 +28,7 @@
 			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 20px 0px 20px 0px;
+			border-radius: 20px 20px 20px 20px;
 
 		}
 
@@ -37,12 +37,12 @@
 		}
 
 		#form-title{
-			color: #373d20;
+			color: white;
 		}
 		.login_btn {
 			width: 100%;
-			background: #373d20 !important;
-			color: white !important;
+			background: white !important;
+			color: black !important;
 		}
 		.login_btn:focus {
 			box-shadow: none !important;
@@ -52,14 +52,14 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #373d20 !important;
-			color: white !important;
+			background: white !important;
+			color: #540b0e !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
 		}
 		.input_user,
 		.input_pass:focus {
-			box-shadow: none !important;
+			box-shadow:#540b0e !important;
 			outline: 0px !important;
 		}
 
@@ -115,7 +115,7 @@
 				
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+					   <span style="color:white;">Already have an account?</span>	 <a href="{% url 'login' %}" class="ml-2">Login</a>
 					</div>
 				</div>
 			</div>
