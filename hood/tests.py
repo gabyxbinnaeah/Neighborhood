@@ -137,14 +137,14 @@ class PostTestClass(TestCase):
         saved_post=Post.objects.all()
         self.assertTrue(len(saved_post)>0) 
 
-    # def test_delete_business(self):
-    #     '''
-    #     method that checks if business  is deleted
-    #     '''
-    #     self.news.save_post()
-    #     self.news.delete_post()
-    #     left_post=Post.objects.all()
-    #     self.assertTrue(len(left_post)==0) 
+    def test_delete_business(self):
+        '''
+        method that checks if business  is deleted
+        '''
+        self.news.save_post()
+        self.news.delete_post()
+        left_post=Post.objects.all()
+        self.assertTrue(len(left_post)==0) 
 
 
 
