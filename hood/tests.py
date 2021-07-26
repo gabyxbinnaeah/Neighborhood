@@ -114,4 +114,37 @@ class BusinessTestClass(TestCase):
         self.assertTrue(len(left_bs)==0) 
 
 
+class PostTestClass(TestCase):
+    def setUp(self):
+        '''
+        Method that creates instance of business class
+        '''
+        self.news= Post(post="will be delivered soon",title="gas") 
+        self.news.save_post() 
+
+    # def test_instance(self):
+    #     '''
+    #     method that checks if business  is instance
+    #     '''
+    #     self.assertTrue(isinstance(self.news,Post))
+
+
+    # def test_save_post(self):
+    #     '''
+    #     Method that test if business  is being saved
+    #     '''
+    #     self.news.save_post()
+    #     saved_post=Post.objects.all()
+    #     self.assertTrue(len(saved_post)>0) 
+
+    # def test_delete_business(self):
+    #     '''
+    #     method that checks if business  is deleted
+    #     '''
+    #     self.news.save_post()
+    #     self.news.delete_post()
+    #     left_post=Post.objects.all()
+    #     self.assertTrue(len(left_post)==0) 
+
+
 
