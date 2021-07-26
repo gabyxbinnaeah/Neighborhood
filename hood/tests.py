@@ -104,14 +104,14 @@ class BusinessTestClass(TestCase):
         saved_bs=Business.objects.all()
         self.assertTrue(len(saved_bs)>0) 
 
-    # def test_delete_business(self):
-    #     '''
-    #     method that checks if business  is deleted
-    #     '''
-    #     self.gas.save_business()
-    #     self.gas.delete_business()
-    #     left_bs=Business.objects.all()
-    #     self.assertTrue(len(left_bs)==0) 
+    def test_delete_business(self):
+        '''
+        method that checks if business  is deleted
+        '''
+        self.gas.save_business()
+        self.gas.delete_business()
+        left_bs=Business.objects.all()
+        self.assertTrue(len(left_bs)==0) 
 
 
 
