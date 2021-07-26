@@ -4,7 +4,8 @@ from .forms import CreateUserForm ,ProfileForm,UpdateProfileForm ,BusinessForm,E
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Profile,Neighborhood,UpcomingEvents,Business
+from .models import Profile,Neighborhood,UpcomingEvents,Business,Post
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -102,17 +103,17 @@ def edit_profile(request):
 
 def single_neighborhood(request, hood_id):
     singlehood= Neighborhood.objects.get(id=hood_id)
-    business = Business.objects.filter(neighbourhood=hood)
-    posts = Post.objects.filter(hood=hood)
-    posts = posts[::-1]
+    business = Business.objects.filter(hood=singlehood)
+    posts = Post.objects.filter(hood=singlehood)
+    posts = posts[::-1] 
     if request.method == 'POST':
-        form = BusinessForm(request.POST)
+        form = BusinessForm(request.POST, request.FILES)
         if form.is_valid():
             formdata = form.save(commit=False)
-            formdata.neighbourhood = singlehood 
+            formdata.hood = singlehood
             formdata.user = request.user 
             formdata.save()
-            return redirect('single-hood', singlehood.id)
+            return redirect('singlehood', singlehood.id)
     else:
         form = BusinessForm() 
     params = {
@@ -121,20 +122,20 @@ def single_neighborhood(request, hood_id):
         'form': form,
         'posts': posts
     }
-    return render(request, 'singlehood.html.html', params) 
+    return render(request, 'singlehood.html', params) 
 
 
 
 def create_post(request, hood_id):
-    singlehood = Neighbourhood.objects.get(id=hood_id)
+    singlehood = Neighborhood.objects.get(id=hood_id)
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.singlehood = singlehood
-            post.user = request.user.profile
+            post=form.save(commit=False)
+            post.hood = singlehood
+            post.user=request.user
             post.save()
-            return redirect('single-hood', singlehood.id)
+            return redirect('singlehood', singlehood.id)
 
     else:
         form = PostForm()
@@ -142,7 +143,7 @@ def create_post(request, hood_id):
 
 
 def join_neighbourhood(request, id):
-    neighbourhood = get_object_or_404(Neighbourhood, id=id)
+    neighbourhood = get_object_or_404(Neighborhood, id=id)
     request.user.neighbourhood = neighbourhood
 	# request.user.profile.neighbourhood = neighbourhood
     request.user.save()
@@ -150,7 +151,7 @@ def join_neighbourhood(request, id):
 
 
 def leave_neighbourhood(request, id):
-    hood = get_object_or_404(Neighbourhood, id=id)
+    hood = get_object_or_404(Neighborhood, id=id)
     request.user.neighbourhood = None
     request.user.save()
     return redirect('index')

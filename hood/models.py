@@ -97,7 +97,7 @@ class Business( models.Model ):
     name=models.CharField(max_length=40 , null=True)
     description=models.TextField(max_length=200, null=True,blank=True)
     image=CloudinaryField('image',blank=True,null=True)
-    user=models.ForeignKey( User , on_delete=models.CASCADE , null=True , related_name="business" )
+    user=models.ForeignKey( User , on_delete=models.CASCADE ,related_name="business" )
     hood=models.ForeignKey( Neighborhood, on_delete=models.CASCADE)
     business_email=models.EmailField(max_length=254, blank=True,null=True)
 
@@ -168,7 +168,7 @@ class UpcomingEvents( models.Model ):
 class Post(models.Model):
     title = models.CharField(max_length=100, null=True)
     post = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post_owner')
     hood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name='hood_post')
 
