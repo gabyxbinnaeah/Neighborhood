@@ -45,11 +45,11 @@ class ProfileTestClass(TestCase):
         self.vin= Profile(image="start.pgn",bio="Motivated IT geek", email="gabs@gmail.com", contact="0791563569") 
         self.vin.save_profile() 
 
-    # def test_instance(self):
-    #     '''
-    #     method that checks if profile is instance
-    #     '''
-    #     self.assertTrue(isinstance(self.vin,Profile))
+    def test_instance(self):
+        '''
+        method that checks if profile is instance
+        '''
+        self.assertTrue(isinstance(self.vin,Profile))
 
 
     # def test_save_profile(self):
