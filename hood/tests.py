@@ -52,13 +52,13 @@ class ProfileTestClass(TestCase):
         self.assertTrue(isinstance(self.vin,Profile))
 
 
-    # def test_save_profile(self):
-    #     '''
-    #     Method that test if profile is being saved
-    #     '''
-    #     self.vin.save_profile()
-    #     list_profile=Profile.objects.all()
-    #     self.assertTrue(len(list_profile)>0) 
+    def test_save_profile(self):
+        '''
+        Method that test if profile is being saved
+        '''
+        self.vin.save_profile()
+        list_profile=Profile.objects.all()
+        self.assertTrue(len(list_profile)>0) 
 
     # def test_delete_profile(self):
     #     '''
