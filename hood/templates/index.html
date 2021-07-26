@@ -36,12 +36,15 @@
                   <p class="card-text">{{neighbors.description}}</p>
                   <a href="{% url 'singlehood' neighbors.id %}" class="btn btn-outline-info">More Details</a>
 
-                  {% if request.user.profile.hoods == neighbors %}
+                 
+                </div>
+                <div class="card-footer text-muted">
+                    {% if request.user.profile.hoods == neighbors %}
                     <div class="leave">
                         <a href="{% url 'leave-hood' neighbors.id %}" class="btn btn-sm  btn-outline-danger mb-2">Leave Neighbourhood</a>
                     </div>
                     <div class="explore">
-                        <a href="{% url 'single-hood' neighbors.id %}" class="btn btn-sm btn-outline-info ">Explore {{user.profile.neighborhood.name}} Estate
+                        <a href="{% url 'singlehood' neighbors.id %}" class="btn btn-sm btn-outline-info ">Explore {{user.profile.hoods.name}} Estate
                         </a>
                     </div>
                   {% elif not request.user.profile.hoods %}
@@ -49,7 +52,6 @@
                   {% endif %}
                   
                 </div>
-                <div class="card-footer text-muted"></div>
                 
             </div>
             
