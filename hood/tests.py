@@ -60,14 +60,14 @@ class ProfileTestClass(TestCase):
         list_profile=Profile.objects.all()
         self.assertTrue(len(list_profile)>0) 
 
-    # def test_delete_profile(self):
-    #     '''
-    #     method that checks if profile is deleted
-    #     '''
-    #     self.vin.save_profile()
-    #     self.vin.delete_profile()
-    #     left_profiles=Profile.objects.all()
-    #     self.assertTrue(len(left_profiles)==0) 
+    def test_delete_profile(self):
+        '''
+        method that checks if profile is deleted
+        '''
+        self.vin.save_profile()
+        self.vin.delete_profile()
+        left_profiles=Profile.objects.all()
+        self.assertTrue(len(left_profiles)==0) 
 
     # def test_bio_update(self):
     #     '''
