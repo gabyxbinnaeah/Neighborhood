@@ -96,13 +96,13 @@ class BusinessTestClass(TestCase):
         self.assertTrue(isinstance(self.gas,Business))
 
 
-    # def test_save_business(self):
-    #     '''
-    #     Method that test if business  is being saved
-    #     '''
-    #     self.gas.save_business()
-    #     saved_bs=Business.objects.all()
-    #     self.assertTrue(len(saved_bs)>0) 
+    def test_save_business(self):
+        '''
+        Method that test if business  is being saved
+        '''
+        self.gas.save_business()
+        saved_bs=Business.objects.all()
+        self.assertTrue(len(saved_bs)>0) 
 
     # def test_delete_business(self):
     #     '''
