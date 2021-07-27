@@ -1,7 +1,7 @@
 # Title 
 ### Neighborhood Web Application
 ### home page
-![](/static/css/images/homehood.png)
+![](/hood/static/css/images/homehood.png)
 ___
 
 # Author 
