@@ -73,9 +73,17 @@ def create_neighborhood(request):
 
 def joinhood(request, id):
     hood = get_object_or_404(Neighborhood, id=id)
-    request.user.profile.hoods = hood
-    request.user.profile.save()
-    return redirect('index')
+    try:
+        user_profile = Profile.objects.filter(user=request.user).last()
+    except Profile.DoesNotExist:
+        user_profile =None
+    if user_profile is not None:
+        request.user.profile.hoods = hood
+        request.user.profile.save()
+        return redirect('index')
+    else:
+        messages.warning(request,'kindly create user profile and try again')
+        return redirect('profile')
 
 
 def leavehood(request, id):
