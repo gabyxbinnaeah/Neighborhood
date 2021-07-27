@@ -14,13 +14,22 @@
                 <hr>
                 <p>{{profile.email}}</p>
 
+            </div> 
+        </div>
+        <div class="row" style="padding:20px;">
+            <div class="col-md-6" style="background-color: #373d20;color:white;">
+             {%for message in messages%}
+                <div class="alert alert-warning ">{{message}}</div>
+              {%  endfor %}
             </div>
-            
-            <div class="col-sm-6 col-md-2" style="padding-top:20px;">
-                    <a href="{%url 'edit' %}" class="btn btn-outline-secondary btn-sm">Edit Profile</a>
+            <div class="col-md-6">
+                <div class="" style="padding-top:20px;">
+                    <a href="{%url 'edit' %}" class="btn btn-outline-secondary btn-xl">Edit Profile</a>
+                </div>
             </div>
         </div>
         <!-- return here-->
+        
         
     </div>
 
