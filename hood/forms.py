@@ -28,7 +28,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields=['image', 'bio','email'] 
+        fields=['image', 'bio','profile_email'] 
 
 class NeighborhoodForm(forms.ModelForm):
 

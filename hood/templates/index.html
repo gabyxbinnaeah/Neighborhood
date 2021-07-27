@@ -34,13 +34,11 @@
                     
                   <h5 class="card-title">Hood Location: {{neighbors.location}}</h5>
                   <p class="card-text">{{neighbors.description}}</p>
-                  <a href="{% url 'singlehood' neighbors.id %}" class="btn btn-outline-info">More Details</a>
-
-                 
+                  <a class="btn btn-outline-info btn-small" href="{%url 'singlehood' neighbors.id %}">More Details</a>
                 </div>
                 <div class="card-footer text-muted">
                     {%if request.user.profile.hoods == neighbors %}
-                    <a class="btn btn-success btn-small" href="{%url 'singlehood' neighborsid%}">View Hood</a>
+                    <a class="btn btn-success btn-small" href="{%url 'singlehood' neighbors.id%}">View Hood</a>
                     <a class="btn btn-danger" href="{%url 'leavehood' neighbors.id%}">Leave Hood</a>
                     {%elif not request.user.profile.neighbourhood%}
                     <a class="btn btn-md btn-outline-info" href="{%url 'joinhood' neighbors.id%}">Join Hood</a>
