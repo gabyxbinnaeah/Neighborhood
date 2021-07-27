@@ -25,7 +25,7 @@
         {% for neighbors in found_neighborhood %}
         <div class="col-md-4" style="padding:20px">
             <div class="vl"></div>
-            <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded" style="">
+            <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded" >
                 <div class="card-header">
                   <h2>Mtaa: {{neighbors.name}}</h2>  
                 </div>
@@ -39,17 +39,12 @@
                  
                 </div>
                 <div class="card-footer text-muted">
-                    {% if request.user.profile.hoods == neighbors %}
-                    <div class="leave">
-                        <a href="{% url 'leave-hood' neighbors.id %}" class="btn btn-outline-danger btn-sm mb-2">Leave Neighbourhood</a>
-                    </div>
-                    <div class="explore">
-                        <a href="{% url 'singlehood' user.profile.hoods.id %}" class="btn btn-outline-info btn-sm">Explore {{user.profile.hoods.name}} Estate
-                        </a>
-                    </div>
-                    {% elif not request.user.profile.hoods %}
-                    <a href="{% url 'join-hood' neighbors.id %}" class="btn btn-outline-info btn-sm">Join Neighbourhood</a>
-                    {% endif %}
+                    {%if request.user.profile.hoods == neighbors %}
+                    <a class="btn btn-success btn-small" href="{%url 'singlehood' neighborsid%}">View Hood</a>
+                    <a class="btn btn-danger" href="{%url 'leavehood' neighbors.id%}">Leave Hood</a>
+                    {%elif not request.user.profile.neighbourhood%}
+                    <a class="btn btn-md btn-outline-info" href="{%url 'joinhood' neighbors.id%}">Join Hood</a>
+                  {%endif%}
                 </div>
                 
             </div>
@@ -58,6 +53,11 @@
        
         {% endfor %}
     </div>
+    <footer  style="text-align: center;padding: 3px;background-color: #540b0e;color: white;">
+        <p>Author: Gabriel Odhiambo<br>
+        <a href="mailto:gabyxbinnaeh4@gmail.com" style="color:white">gabyxbinnaeh4@gmail.com</a>
+        </p>
+    </footer>
     
 </body>
 </html>

@@ -66,12 +66,12 @@ class Profile(models.Model):
     '''
     model that defines user profile.
     '''
-    image=CloudinaryField('image',blank=True,null=True)
+    image=CloudinaryField('image', blank=True,null=True)
     bio=models.CharField(max_length=20, null=True,blank=True)
     hoods=models.ForeignKey(Neighborhood, on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     email=models.EmailField(max_length=254, blank=True,null=True)
-    contact=models.CharField(max_length=20,  null=True, blank=True) 
+    
 
     def __str__(self):
         return self.bio
@@ -177,3 +177,10 @@ class Post(models.Model):
 
     def delete_post(self):
         self.delete()
+
+    @classmethod
+    def search_post(cls, title):
+        '''
+        method that filters project by title
+        '''
+        return cls.objects.filter(title__icontains=title).all()

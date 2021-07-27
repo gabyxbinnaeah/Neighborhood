@@ -71,19 +71,18 @@ def create_neighborhood(request):
     return render(request, 'newhood.html', {'form': form}) 
 
 
-def join_neighbourhood(request, id):
-    hoods = get_object_or_404(Neighborhood, id=id)
-    request.user.hoods = hoods
-	# request.user.profile.neighbourhood = neighbourhood
-    request.user.save()
+def joinhood(request, id):
+    hood = get_object_or_404(Neighborhood, id=id)
+    request.user.profile.hoods = hood
+    request.user.profile.save()
     return redirect('index')
 
 
-def leave_neighbourhood(request, id):
+def leavehood(request, id):
     hood = get_object_or_404(Neighborhood, id=id)
-    request.user.hoods = None
-    request.user.save()
-    return redirect('index') 
+    request.user.profile.hoods = None
+    request.user.profile.save()
+    return redirect('index')
 
 @login_required(login_url='login') 
 def profile(request):
@@ -92,10 +91,10 @@ def profile(request):
     '''
     current_user=request.user
     profile= Profile.objects.filter(user=current_user).first()
-    # my_posts=Project.objects.filter(author=request.user)
-    # "my_posts":my_posts
+    my_posts=Post.objects.filter(user=request.user)
     
-    return render(request,'profile.html',{"profile":profile,"current_user":current_user})
+    
+    return render(request,'profile.html',{"profile":profile,"current_user":current_user,"my_posts":my_posts})
 
 
 @login_required(login_url='login')
@@ -155,5 +154,22 @@ def create_post(request, hood_id):
     else:
         form = PostForm()
     return render(request, 'post.html', {'form': form})
+
+
+
+
+@login_required(login_url='login')
+def search_results(request):
+
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_posts = Post.search_post(search_term)
+        messages = f"{search_term}"
+
+        return render(request, 'search.html',{"found_post": searched_posts})
+
+    else:
+        message = "You haven't searched for any post"
+        return render(request, 'search.html',{"message":message})
 
 
